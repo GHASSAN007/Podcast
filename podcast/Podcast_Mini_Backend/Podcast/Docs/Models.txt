@@ -1,0 +1,13 @@
+explaning the database managment of the projrect 
+-------------------------------------------------
+
+each mini-podcast must contant :
+
+    - Title
+    - Description 
+    - thumbnail
+    - podcasted by
+    - channel name 
+    - number of views
+    - number of likes 
+       
