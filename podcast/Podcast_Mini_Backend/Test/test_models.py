@@ -25,10 +25,10 @@ class Podcast_info_TestCase(TestCase):
 class channel_Testcase(TestCase):
     def setUp(self):
         channel.objects.create(
-            channel_name = "Malek_zahra007"
-            podcast_maker = "Malek zahra"
-            subscribers = 5
-            podcast_num = 9
+            channel_name = "Malek_zahra007",
+            podcast_maker = "Malek zahra",
+            subscribers = 5,
+            podcast_num = 9,
         )
 
     def test_channel(self):
