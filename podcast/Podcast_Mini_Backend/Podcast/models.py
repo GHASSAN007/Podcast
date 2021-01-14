@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import auth
-
+from CODE_FOR_APPS.validators import validate_podcast_extension, validate_thumbnail_extension
+from django.core.exceptions import ValidationError
 
 ENGLISH = 'EN'
 ARABIC = 'AR'
@@ -22,45 +23,46 @@ Languages = [
     (JAPANESE, 'Japanese'),
 ]
 
-#class for podcast data 
+# class for podcast data
+
+
 class Podcast_info(models.Model):
-    
-    Title : str = models.CharField(max_length = 200, unique=True)                                # Title of the podcast
-    Description : str = models.TextField(blank = True , default = "No Description") #description of each podcast / story
-    podcast = models.FileField(upload_to = 'podcasts/')                             # the audio file  
-    Thumbnail = models.ImageField(upload_to = 'Thumbnail/')                         #the image of podcast
-    posting_date  = models.DateTimeField(auto_now=True)
-    podcasted_by : str = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    channel = models.ForeignKey('channel' , on_delete=models.CASCADE ) 
-    is_viewed : bool = models.BooleanField(default = False)                         # checking if the user listend to the podcast beviewed 
-    is_liked : bool = models.BooleanField(default = False)                          # checking if the user liked the podcast before 
-    likes  : int = models.IntegerField( default=0 )                                 #number of likes 
-    views : int = models.IntegerField(default=0)                                    # number of views 
-    language : str = models.CharField(max_length=3, choices=Languages)
+
+
+    Title = models.CharField(max_length=200, unique=True)
+    Description = models.TextField(blank=True, default="No Description")
+    podcast = models.FileField(upload_to='podcasts/',  validators=[validate_podcast_extension]) 
+    Thumbnail = models.ImageField( upload_to='Thumbnail/', validators=[validate_thumbnail_extension]) 
+    posting_date = models.DateTimeField(auto_now=True)
+    podcasted_by = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    channel = models.ForeignKey('channel', on_delete=models.CASCADE)
+    is_viewed = models.BooleanField(default=False)
+    is_liked = models.BooleanField(default=False)
+    likes = models.PositiveIntegerField(default=0) 
+    views = models.PositiveIntegerField(default=0)
+    language = models.CharField(max_length=3, choices=Languages)
 
     def __string__(self):
         return self.Title
 
 
-
-
 class channel(models.Model):
-	channel_name : str = models.CharField(max_length=250 , unique=True)            
-	podcast_maker = models.ForeignKey('auth.User' , on_delete=models.CASCADE)
-	subscribers : int = models.IntegerField(default=False)
-	creation_date  = models.DateField(auto_now=True)
-	podcast_num : int = models.IntegerField(default=0)
+    channel_name = models.CharField(max_length=250, unique=True)
+    podcast_maker = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    subscribers = models.PositiveIntegerField(default=False)
+    creation_date = models.DateField(auto_now=True)
+    podcast_num = models.PositiveIntegerField(default=0)
 
-	def __string__(self):
-		return self.channel_name
+    def __string__(self):
+        return self.channel_name
 
 
 class comment(models.Model):
-    text : str = models.TextField(blank=False)
+    text = models.TextField(blank=False)
     date_of_comment = models.DateTimeField(auto_now=True)
-    podcast = models.ForeignKey(Podcast_info , on_delete = models.CASCADE)
-    user = models.ForeignKey('auth.User' , on_delete = models.CASCADE)
+    podcast = models.ForeignKey(Podcast_info, on_delete=models.CASCADE)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    likes = models.PositiveIntegerField(default=0)
 
     def __string__(self):
         return self.text
-
