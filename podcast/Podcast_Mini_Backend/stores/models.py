@@ -6,7 +6,7 @@ class stores(models.Model):
 
     title = models.CharField(max_length = 200, unique=True)# Main Title of story
     suptitle = models.TextField(default = title )#subtitle of each story
-    storys = models.FileField(upload_to = 'stores_audio/',  validators=[validate_podcast_extension])# the audio file  
+    stores = models.FileField(upload_to = 'stores_audio/',  validators=[validate_podcast_extension])# the audio file  
     Thumbnail = models.ImageField(upload_to = 'stores_Thumbnail/' , validators=[validate_thumbnail_extension])#the image of podcast
     posting_date = models.DateTimeField(auto_now=True)
     podcasted_by = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -17,8 +17,8 @@ class stores(models.Model):
     likes = models.PositiveIntegerField(default=0 )# number of likes 
     listened = models.PositiveIntegerField(default=0)  # number of playing 
     language = models.CharField(max_length=3, choices=Languages)
-    is_locked = models.BooleanField(default=False)
-
+    is_stores_blocked = models.BooleanField(default=False)
+    is_private_story = models.BooleanField(default=False)
 
     def __string__(self):
         return self.title
@@ -28,10 +28,11 @@ class stores(models.Model):
 
 class story_channels(models.Model):
 	channel_name = models.CharField(max_length=250 , unique=True)            
-	storer = models.ForeignKey('auth.User' , on_delete=models.CASCADE)
+	storyteller = models.ForeignKey('auth.User' , on_delete=models.CASCADE)
 	subscribers = models.PositiveIntegerField(default=0)
 	creation_date  = models.DateField(auto_now=True)
 	podcast_num = models.PositiveIntegerField(default=0)
+    #is_story_channel_blocked = models.BooleanField(default=False)
 
 	def __string__(self):
 		return self.channel_name
@@ -43,6 +44,7 @@ class story_comments(models.Model):
     story = models.ForeignKey(stores , on_delete = models.CASCADE)
     user = models.ForeignKey('auth.User' , on_delete = models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
-    
+    is_story_comment_blocked = models.BooleanField(default=False)
+
     def __string__(self):
         return self.text
