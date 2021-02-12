@@ -2,7 +2,7 @@ from django.db import models
 from Podcast.models import  Languages
 from CODE_FOR_APPS.validators import validate_podcast_extension, validate_thumbnail_extension
 
-class stores(models.Model):
+class stores_info(models.Model):
 
     title = models.CharField(max_length = 200, unique=True)# Main Title of story
     suptitle = models.TextField(default = title )#subtitle of each story
@@ -41,7 +41,7 @@ class story_channels(models.Model):
 class story_comments(models.Model):
     text = models.TextField(blank=False)
     date_of_comment = models.DateTimeField(auto_now=True)
-    story = models.ForeignKey(stores , on_delete = models.CASCADE)
+    story = models.ForeignKey(stores_info , on_delete = models.CASCADE)
     user = models.ForeignKey('auth.User' , on_delete = models.CASCADE)
     likes = models.PositiveIntegerField(default=0)
     is_story_comment_blocked = models.BooleanField(default=False)

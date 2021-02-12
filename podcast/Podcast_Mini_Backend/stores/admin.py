@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import *
 
 
-@admin.register(stores)
+@admin.register(stores_info)
 class Stores(admin.ModelAdmin):
     list_display = ['title', 'suptitle', 'stores', 'Thumbnail', 'posting_date',
                     'podcasted_by', 'channels', 'likes', 'listened', 'language']
