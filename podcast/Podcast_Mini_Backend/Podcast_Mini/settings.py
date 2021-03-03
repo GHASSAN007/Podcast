@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
     #django libraries 
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -41,7 +42,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  
+    'django.middleware.common.CommonMiddleware',  
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://192.168.0.105:3000',
+] # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://192.168.0.105:3000',
+]
+
 
 ROOT_URLCONF = 'Podcast_Mini.urls'
 
@@ -110,6 +123,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+ 
 STATIC_URL = '/static/'
-ALLOWED_HOSTS = ["localhost", "192.168.0.106"]
+ALLOWED_HOSTS = ["localhost", "192.168.0.105"]
