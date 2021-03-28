@@ -130,4 +130,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-ALLOWED_HOSTS = ["localhost", "192.168.0.105"]
+ALLOWED_HOSTS = ["localhost", "192.168.0.103"]
