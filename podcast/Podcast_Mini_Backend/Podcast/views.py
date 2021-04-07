@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework import status
+from django.http import HttpResponseNotAllowed , Http404
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -43,10 +44,16 @@ def podcast_List(request):
 
 @api_view(['GET'])
 def Podcast_detail(request , pk):
-    podcast = Podcast_info.objects.get(pk=pk)
-    serializer = Podcast_infoSerializer(podcast , many=False)
+#    if Podcast_info.is_podcast_blocked:
+ #       return HttpResponseForbidden
+#    else:
+        podcast = Podcast_info.objects.get(pk=pk)
+        if podcast.is_podcast_blocked:
+            return HttpResponseNotAllowed            
+        else:
+            serializer = Podcast_infoSerializer(podcast , many=False)
 
-    return Response(serializer.data)
+            return Response(serializer.data)
 
 
 @api_view(['POST'])
