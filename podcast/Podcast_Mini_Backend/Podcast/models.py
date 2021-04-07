@@ -1,27 +1,9 @@
 from django.db import models
 from django.contrib import auth
-from CODE_FOR_APPS.validators import validate_podcast_extension, validate_thumbnail_extension
 from django.core.exceptions import ValidationError
 
-ENGLISH = 'EN'
-ARABIC = 'AR'
-CHINES = 'ZH'
-DUTCH = 'NL'
-FRENCH = 'FR'
-GERMAN = 'DE'
-RUSSIAN = 'RU'
-JAPANESE = 'JA'
-
-Languages = [
-    (ENGLISH, 'English'),
-    (ARABIC, 'Arabic'),
-    (CHINES, 'Chines'),
-    (DUTCH, 'Dutch'),
-    (FRENCH, 'French'),
-    (GERMAN, 'German'),
-    (RUSSIAN, 'Russian'),
-    (JAPANESE, 'Japanese'),
-]
+from COMMON.validators import validate_podcast_extension, validate_thumbnail_extension
+from COMMON.Language import Languages
 
 # class for podcast data
 

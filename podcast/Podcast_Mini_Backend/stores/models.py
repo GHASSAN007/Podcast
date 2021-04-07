@@ -1,6 +1,7 @@
 from django.db import models
-from Podcast.models import  Languages
-from CODE_FOR_APPS.validators import validate_podcast_extension, validate_thumbnail_extension
+
+from COMMON.validators import validate_podcast_extension, validate_thumbnail_extension
+from COMMON.Language import Languages
 
 class stores_info(models.Model):
 
