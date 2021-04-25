@@ -10,7 +10,7 @@ from COMMON.Language import Languages
 
 class Podcast_info(models.Model):
 
-
+    id = models.AutoField(primary_key=True)
     Title = models.CharField(max_length=200, unique=True)
     Description = models.TextField(blank=True, default="No Description")
     podcast = models.FileField(upload_to='podcasts/') #,  validators=[validate_podcast_extension]
@@ -31,6 +31,8 @@ class Podcast_info(models.Model):
 
 
 class channel(models.Model):
+        
+    id = models.AutoField(primary_key=True)
     channel_name = models.CharField(max_length=250, unique=True)
     podcast_maker = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     subscribers = models.PositiveIntegerField(default=False)
@@ -41,8 +43,8 @@ class channel(models.Model):
     def __string__(self):
         return self.channel_name
 
-
 class comment(models.Model):
+    id = models.AutoField(primary_key=True)
     text = models.TextField(blank=False)
     date_of_comment = models.DateTimeField(auto_now=True)
     podcast = models.ForeignKey(Podcast_info, on_delete=models.CASCADE)
