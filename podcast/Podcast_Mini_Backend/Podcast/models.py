@@ -1,34 +1,16 @@
 from django.db import models
 from django.contrib import auth
-from CODE_FOR_APPS.validators import validate_podcast_extension, validate_thumbnail_extension
 from django.core.exceptions import ValidationError
 
-ENGLISH = 'EN'
-ARABIC = 'AR'
-CHINES = 'ZH'
-DUTCH = 'NL'
-FRENCH = 'FR'
-GERMAN = 'DE'
-RUSSIAN = 'RU'
-JAPANESE = 'JA'
-
-Languages = [
-    (ENGLISH, 'English'),
-    (ARABIC, 'Arabic'),
-    (CHINES, 'Chines'),
-    (DUTCH, 'Dutch'),
-    (FRENCH, 'French'),
-    (GERMAN, 'German'),
-    (RUSSIAN, 'Russian'),
-    (JAPANESE, 'Japanese'),
-]
+from COMMON.validators import validate_podcast_extension, validate_thumbnail_extension
+from COMMON.Language import Languages
 
 # class for podcast data
 
 
 class Podcast_info(models.Model):
 
-
+    id = models.AutoField(primary_key=True)
     Title = models.CharField(max_length=200, unique=True)
     Description = models.TextField(blank=True, default="No Description")
     podcast = models.FileField(upload_to='podcasts/') #,  validators=[validate_podcast_extension]
@@ -49,6 +31,8 @@ class Podcast_info(models.Model):
 
 
 class channel(models.Model):
+        
+    id = models.AutoField(primary_key=True)
     channel_name = models.CharField(max_length=250, unique=True)
     podcast_maker = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     subscribers = models.PositiveIntegerField(default=False)
@@ -59,8 +43,8 @@ class channel(models.Model):
     def __string__(self):
         return self.channel_name
 
-
 class comment(models.Model):
+    id = models.AutoField(primary_key=True)
     text = models.TextField(blank=False)
     date_of_comment = models.DateTimeField(auto_now=True)
     podcast = models.ForeignKey(Podcast_info, on_delete=models.CASCADE)
@@ -70,3 +54,5 @@ class comment(models.Model):
 
     def __string__(self):
         return self.text
+
+
