@@ -1,16 +1,19 @@
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+IP_ADDRESS = os.getenv('IP_ADDRESS')
+PORT = os.getenv('PORT')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '6q=f*uil9k_e%=1n5j0^2*8z6edh%j3^x*i#yc*g!b-b1_xq(-'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -48,10 +51,10 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    'http://192.168.0.104:3000',
+    'http://' + IP_ADDRESS + ':' + PORT,
 ] # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
 CORS_ORIGIN_REGEX_WHITELIST = [
-    'http://192.168.0.104:3000',
+    'http://' + IP_ADDRESS + ':' + PORT,
 ]
 
 
@@ -130,4 +133,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-ALLOWED_HOSTS = ["localhost", "192.168.0.104"]
+ALLOWED_HOSTS = ["localhost", IP_ADDRESS]
