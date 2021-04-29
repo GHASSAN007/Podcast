@@ -1,12 +1,12 @@
-
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from COMMON.ip_address import get_ip_address 
 
 load_dotenv()
 
-IP_ADDRESS = os.getenv('IP_ADDRESS')
-PORT = os.getenv('PORT')
+IP_ADDRESS =  get_ip_address()
+PORT = '8080'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
