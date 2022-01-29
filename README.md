@@ -1,8 +1,5 @@
- Podcast
-Webapp for streaming mini_podcast and stories 
-max length 2min 
-
-setup
+App for streaming mini podcast and stories (as Tiktok and reels🙃)\
+setup :
 ```bash
 #clone the repository 
 git clone https://github.com/GHASSAN007/Podcast.git
@@ -19,11 +16,11 @@ python3 mange.py migrate
 #create admin user 
 python3 mange.py createsuperuser
 
-# run server
-python3 manage.py runserver 
+#get your ip adress by
+python3 COMMON/ip_address.py
 
-#if you want to run it in your network run 
-python3 mange.py runserver --network
+#Run server on your network 
+python3 mange.py runserver {YOUR_IP_ADDRESS}:{PORT}
 
 ```
 
