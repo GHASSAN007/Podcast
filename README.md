@@ -1,4 +1,4 @@
-App for streaming mini podcast and stories (as Tiktok and reels🙃)
+App for streaming mini podcast and stories (as Tiktok and reels🙃)\
 setup :
 ```bash
 #clone the repository 
