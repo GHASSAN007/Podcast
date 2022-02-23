@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Podcast',
-    "stores",
+    'stores',
+    'Front_end',
+
 
     #django libraries 
     'rest_framework',
