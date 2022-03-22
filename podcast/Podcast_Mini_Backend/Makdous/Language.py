@@ -7,6 +7,7 @@ GERMAN = 'DE'
 RUSSIAN = 'RU'
 JAPANESE = 'JA'
 
+
 Languages = [
     (ENGLISH, 'English'),
     (ARABIC, 'Arabic'),
