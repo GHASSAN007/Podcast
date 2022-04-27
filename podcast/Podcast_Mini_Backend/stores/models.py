@@ -1,6 +1,6 @@
 from django.db import models
 
-from Makdous import validate_podcast_extension, validate_thumbnail_extension, Languages
+from Scripts import validate_podcast_extension, validate_thumbnail_extension, Languages
 class stores_info(models.Model):
 
 	id = models.AutoField(primary_key=True)

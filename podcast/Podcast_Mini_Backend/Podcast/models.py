@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib import auth
 from django.core.exceptions import ValidationError
 
-from Makdous import validate_podcast_extension, validate_thumbnail_extension, Languages
+from Scripts import validate_podcast_extension, validate_thumbnail_extension, Languages
 
 # class for podcast data
 

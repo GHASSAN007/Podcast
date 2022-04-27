@@ -6,7 +6,10 @@ export default class HomePage extends Component{
         super(props)
     }
     render(){
-        return <p>Hello world!</p>
+        return <div>
+            <h1>Hi there</h1>
+            <h4>nice</h4>
+        </div>
     }
 }
 
