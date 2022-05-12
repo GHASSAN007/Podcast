@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-from COMMON.ip_address import get_ip_address 
+from Scripts import get_ip_address
 
 load_dotenv() # create .env file in this dir. and add a SECRET_KEY var
 
@@ -29,7 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Podcast',
-    "stores",
+    'stores',
+    'Front_end',
+
 
     #django libraries 
     'rest_framework',

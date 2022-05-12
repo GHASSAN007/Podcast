@@ -1,8 +1,6 @@
 from django.db import models
 
-from COMMON.validators import validate_podcast_extension, validate_thumbnail_extension
-from COMMON.Language import Languages
-
+from Scripts import validate_podcast_extension, validate_thumbnail_extension, Languages
 class stores_info(models.Model):
 
 	id = models.AutoField(primary_key=True)
