@@ -8,7 +8,7 @@ setup
 git clone https://github.com/GHASSAN007/Podcast.git
 
 #move to the directory
-cd /podcast/Podcast_Mini_Backend/
+cd Podcast_Mini_Backend/
 # install requiermints 
 python3 -m pip install -r requirements.txt
 
