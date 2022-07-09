@@ -7,12 +7,6 @@ class Podcast_infoSerializer(serializers.ModelSerializer):
         model = Podcast_info
         fields = '__all__'
 
-class channelSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = channel
-        fields = '__all__'
-
     
 class commentSerializer(serializers.ModelSerializer):
 

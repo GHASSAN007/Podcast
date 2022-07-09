@@ -1,16 +1,17 @@
 from django.db import models
 
 from Scripts import validate_podcast_extension, validate_thumbnail_extension, Languages
+from Channels.models import channel
 class stores_info(models.Model):
 
 	id = models.AutoField(primary_key=True)
 	title = models.CharField(max_length = 200, unique=True)# Main Title of story
-	suptitle = models.TextField(default = title )#subtitle of each story
+	suptitle = models.TextField()#subtitle of each story
 	stores = models.FileField(upload_to = 'stores_audio/',  validators=[validate_podcast_extension])# the audio file  
 	Thumbnail = models.ImageField(upload_to = 'stores_Thumbnail/' , validators=[validate_thumbnail_extension])#the image of podcast
 	posting_date = models.DateTimeField(auto_now=True)
 	podcasted_by = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-	channels = models.ForeignKey('story_channels' , on_delete=models.CASCADE ) 
+	channels = models.ForeignKey('Channels.channel' , on_delete=models.CASCADE ) 
 	comments = models.ForeignKey('story_comments' , on_delete=models.CASCADE ,blank=True , null=True)
 	is_listened = models.BooleanField(default = False)# checking if the user listend to the story  
 	is_liked = models.BooleanField(default = False)# checking if the user liked the story before 
@@ -22,22 +23,6 @@ class stores_info(models.Model):
 
 	def __string__(self):
 		return self.title
-
-
-
-
-class story_channels(models.Model):
-	
-	id = models.AutoField(primary_key=True)
-	channel_name = models.CharField(max_length=250 , unique=True) 
-	storyteller = models.ForeignKey('auth.User' , on_delete=models.CASCADE)
-	subscribers = models.PositiveIntegerField(default=0)
-	creation_date  = models.DateField(auto_now=True)
-	podcast_num = models.PositiveIntegerField(default=0)
-	#is_story_channel_blocked = models.BooleanField(default=False)
-
-	def __string__(self):
-		return self.channel_name
 
 
 class story_comments(models.Model):

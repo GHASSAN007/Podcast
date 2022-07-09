@@ -8,11 +8,6 @@ class Stores(admin.ModelAdmin):
                     'podcasted_by', 'channels', 'likes', 'listened', 'language']
 
 
-@admin.register(story_channels)
-class Story_Channels(admin.ModelAdmin):
-    list_display = ['channel_name', 'storyteller',
-                    'subscribers', 'creation_date', 'podcast_num']
-
 
 @admin.register(story_comments)
 class Comments(admin.ModelAdmin):

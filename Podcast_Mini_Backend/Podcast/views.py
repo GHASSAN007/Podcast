@@ -5,7 +5,7 @@ from django.http import HttpResponseNotAllowed , Http404
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import Podcast_infoSerializer , channelSerializer , commentSerializer
+from .serializers import Podcast_infoSerializer , commentSerializer
 
 from .models import *
 
@@ -18,12 +18,6 @@ def apiOverview(request):
         'Create_podcast':'/create-podcast/',
         'Update-podcast': '/podcast-update/<str:pk>/',
         'Delete_podcast': '/podcast-delete/<str:pk>/',
-        #-------------------------------------------------
-        'List_channels':'/channels-list/',
-        'channel_Detailview':'channel-view/<str:pk>',
-        'Create_channel':'/create-channel/',
-        'Update-channel': '/channel-update/<str:pk>/',
-        'Delete_channel': '/channel-delete/<str:pk>/',
         #-------------------------------------------------
         'List_comments':'/comments-list/',
         'comment_Detailview':'comment-view/<str:pk>',
@@ -85,49 +79,6 @@ def delete_podcast(request, pk):
 
  #-------------------------------------------------
 
-@api_view(['GET'])
-def channels_List(request):
-    _channels = channel.objects.all()
-    serializer = channelSerializer(_channels , many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def channel_detail(request , pk):
-    _channel = channel.objects.get(pk=pk)
-    serializer = channelSerializer(_channel , many=False)
-
-    return Response(serializer.data)
-
-
-@api_view(['POST'])
-def channel_create(request):
-    serializer = channelSerializer(data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-
-@api_view(['POST'])
-def channel_update(request , pk):
-    _channel = channel.objects.get(pk=pk)
-    serializer = channelSerializer( instance=_channel, data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(['DELETE'])
-def Delete_channel(request, pk):
-    _channel = channel.objects.get(pk=pk)
-    _channel.delete()
-
-    return Response(status=status.HTTP_204_NO_CONTENT)
-
- #-------------------------------------------------
 
 @api_view(['GET'])
 def comments_List(request):

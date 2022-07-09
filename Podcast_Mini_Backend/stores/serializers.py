@@ -7,13 +7,7 @@ class storesSerializer(serializers.ModelSerializer):
         model = stores_info
         fields = '__all__'
 
-class story_channelsSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = story_channels
-        fields = '__all__'
-
-    
+   
 class story_commentsSerializer(serializers.ModelSerializer):
 
     class Meta:
