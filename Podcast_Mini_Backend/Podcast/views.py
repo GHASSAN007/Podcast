@@ -5,26 +5,17 @@ from django.http import HttpResponseNotAllowed , Http404
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import Podcast_infoSerializer , commentSerializer
-
+from .serializers import Podcast_infoSerializer 
 from .models import *
 
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
-        # ------------------------------------------------  
         'List_podcast_info':'/podcast-list/',               
         'Podcast_Detailview':'/podcast-view/<str:pk>',
         'Create_podcast':'/create-podcast/',
         'Update-podcast': '/podcast-update/<str:pk>/',
         'Delete_podcast': '/podcast-delete/<str:pk>/',
-        #-------------------------------------------------
-        'List_comments':'/comments-list/',
-        'comment_Detailview':'comment-view/<str:pk>',
-        'Create_comment':'/create-comment/',
-        'Update-comment': '/comment-update/<str:pk>/',
-        'Delete_comment': '/comment-delete/<str:pk>/',
-        #-------------------------------------------------
     }
 
     return Response(api_urls)
@@ -121,5 +112,3 @@ def Delete_comment(request, pk):
     _comment.delete()
 
     return Response(status=status.HTTP_204_NO_CONTENT)
-
- #-------------------------------------------------

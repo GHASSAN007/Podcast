@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import *
+from .models import Podcast_info
 
 class Podcast_infoSerializer(serializers.ModelSerializer):
 
@@ -8,11 +8,5 @@ class Podcast_infoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     
-class commentSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = comment
-        fields = '__all__'
-
 
 

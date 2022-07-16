@@ -2,6 +2,7 @@ from django.db import models
 
 from Scripts import validate_podcast_extension, validate_thumbnail_extension, Languages
 from Channels.models import channel
+from Comments.models import comment
 class stores_info(models.Model):
 
 	id = models.AutoField(primary_key=True)
@@ -12,7 +13,7 @@ class stores_info(models.Model):
 	posting_date = models.DateTimeField(auto_now=True)
 	podcasted_by = models.ForeignKey('auth.User', on_delete=models.CASCADE)
 	channels = models.ForeignKey('Channels.channel' , on_delete=models.CASCADE ) 
-	comments = models.ForeignKey('story_comments' , on_delete=models.CASCADE ,blank=True , null=True)
+	comments = models.ForeignKey('Comments.comment' , on_delete=models.CASCADE ,blank=True , null=True)
 	is_listened = models.BooleanField(default = False)# checking if the user listend to the story  
 	is_liked = models.BooleanField(default = False)# checking if the user liked the story before 
 	likes = models.PositiveIntegerField(default=0 )# number of likes 
@@ -24,15 +25,3 @@ class stores_info(models.Model):
 	def __string__(self):
 		return self.title
 
-
-class story_comments(models.Model):
-	id = models.AutoField(primary_key=True)
-	text = models.TextField(blank=False)
-	date_of_comment = models.DateTimeField(auto_now=True)
-	story = models.ForeignKey(stores_info , on_delete = models.CASCADE)
-	user = models.ForeignKey('auth.User' , on_delete = models.CASCADE)
-	likes = models.PositiveIntegerField(default=0)
-	is_story_comment_blocked = models.BooleanField(default=False)
-
-	def __string__(self):
-		return self.text

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import *
+from .models import stores_info 
 
 
 @admin.register(stores_info)
@@ -8,7 +8,3 @@ class Stores(admin.ModelAdmin):
                     'podcasted_by', 'channels', 'likes', 'listened', 'language']
 
 
-
-@admin.register(story_comments)
-class Comments(admin.ModelAdmin):
-    list_display = ['text', 'date_of_comment', 'story', 'user']

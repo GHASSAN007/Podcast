@@ -11,21 +11,12 @@ from .models import *
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
-        # ------------------------------------------------  
         'List_stories':'/stories-list/',               
         'story_Detailview':'/story-view/<str:pk>',
         'Create_story':'/create-story/',
         'Update_story': '/story-update/<str:pk>/',
         'Delete_story': '/story-delete/<str:pk>/',
-        #-------------------------------------------------
 
-        #-------------------------------------------------
-        'List_story_comments':'/comments-list/',
-        'story_comments_Detailview':'comment-view/<str:pk>',
-        'Create_story_comments':'/create-comment/',
-        'Update-story_comments': '/comment-update/<str:pk>/',
-        'Delete_story_comments': '/comment-delete/<str:pk>/',
-        #-------------------------------------------------
     }
 
     return Response(api_urls)
@@ -72,47 +63,3 @@ def Delete_story(request, pk):
 
     return Response(status=status.HTTP_204_NO_CONTENT)
 
- #-------------------------------------------------
-@api_view(['GET'])
-def story_comments_List(request):
-    _comments = story_comments.objects.all()
-    serializer = story_commentsSerializer(_comments , many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def story_comments_detail(request , pk):
-    _comment = story_comments.objects.get(pk=pk)
-    serializer = story_commentsSerializer(_comment , many=False)
-
-    return Response(serializer.data)
-
-
-@api_view(['POST'])
-def create_story_comments(request):
-    serializer = story_commentsSerializer(data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-
-@api_view(['POST'])
-def update_story_comments(request , pk):
-    _comment = story_comments.objects.get(pk=pk)
-    serializer = story_commentsSerializer( instance=_comment, data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(['DELETE'])
-def Delete_story_comments(request, pk):
-    _comment = story_comments.objects.get(pk=pk)
-    _comment.delete()
-
-    return Response(status=status.HTTP_204_NO_CONTENT)
-
- #-------------------------------------------------
