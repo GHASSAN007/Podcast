@@ -5,7 +5,7 @@ from django.http import HttpResponseNotAllowed , Http404
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import  commentSerializer
+from .serializers import  comment_serializer
 
 from .models import *
 
@@ -24,21 +24,21 @@ def apiOverview(request):
 @api_view(['GET'])
 def comments_List(request):
     _comments = comment.objects.all()
-    serializer = commentSerializer(_comments , many=True)
+    serializer = comment_serializer(_comments , many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def comment_detail(request , pk):
     _comment = comment.objects.get(pk=pk)
-    serializer = commentSerializer(_comment , many=False)
+    serializer = comment_serializer(_comment , many=False)
 
     return Response(serializer.data)
 
 
 @api_view(['POST'])
 def comment_create(request):
-    serializer = commentSerializer(data=request.data)
+    serializer = comment_serializer(data=request.data)
 
     if serializer.is_valid():
         serializer.save()
@@ -49,7 +49,7 @@ def comment_create(request):
 @api_view(['POST'])
 def comment_update(request , pk):
     _comment = comment.objects.get(pk=pk)
-    serializer =commentSerializer( instance=_comment, data=request.data)
+    serializer =comment_serializer( instance=_comment, data=request.data)
 
     if serializer.is_valid():
         serializer.save()

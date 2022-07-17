@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import stores_info 
+from .models import story 
 
-class storesSerializer(serializers.ModelSerializer):
+class story_serializer(serializers.ModelSerializer):
 
     class Meta:
-        model = stores_info
+        model = story
         fields = '__all__'
 

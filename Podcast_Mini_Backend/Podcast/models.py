@@ -7,7 +7,7 @@ from Scripts import validate_podcast_extension, validate_thumbnail_extension, La
 # class for podcast data
 
 from Channels.models import channel
-class Podcast_info(models.Model):
+class podcast(models.Model):
 
     id = models.AutoField(primary_key=True)
     Title = models.CharField(max_length=200, unique=True)

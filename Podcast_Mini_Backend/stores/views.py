@@ -23,22 +23,22 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def List_stories(request):
-    stores = stores_info.objects.all()
-    serializer = storesSerializer(stores, many=True)
+    stores = story.objects.all()
+    serializer = story_serializer(stores, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def story_detail(request , pk):
-    story = stores_info.objects.get(pk=pk)
-    serializer = storesSerializer(story, many=False)
+    story = story.objects.get(pk=pk)
+    serializer = story_serializer(story, many=False)
 
     return Response(serializer.data)
 
 
 @api_view(['POST'])
 def Create_story(request):
-    serializer = storesSerializer(data=request.data)
+    serializer = story_serializer(data=request.data)
 
     if serializer.is_valid():
         serializer.save()
@@ -48,8 +48,8 @@ def Create_story(request):
 
 @api_view(['POST'])
 def Update_story(request , pk):
-    story = stores_info.objects.get(pk=pk)
-    serializer = storesSerializer( instance=story, data=request.data)
+    story = story.objects.get(pk=pk)
+    serializer = story_serializer( instance=story, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
@@ -58,7 +58,7 @@ def Update_story(request , pk):
 
 @api_view(['DELETE'])
 def Delete_story(request, pk):
-    story = stores_info.objects.get(pk=pk)
+    story = story.objects.get(pk=pk)
     story.delete()
 
     return Response(status=status.HTTP_204_NO_CONTENT)

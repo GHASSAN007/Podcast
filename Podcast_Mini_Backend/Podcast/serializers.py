@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import Podcast_info
+from .models import podcast
 
-class Podcast_infoSerializer(serializers.ModelSerializer):
+class podcast_serializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Podcast_info
+        model = podcast
         fields = '__all__'
 
     

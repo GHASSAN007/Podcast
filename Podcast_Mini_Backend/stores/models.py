@@ -3,7 +3,7 @@ from django.db import models
 from Scripts import validate_podcast_extension, validate_thumbnail_extension, Languages
 from Channels.models import channel
 from Comments.models import comment
-class stores_info(models.Model):
+class story(models.Model):
 
 	id = models.AutoField(primary_key=True)
 	title = models.CharField(max_length = 200, unique=True)# Main Title of story

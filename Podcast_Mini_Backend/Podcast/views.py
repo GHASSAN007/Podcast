@@ -5,13 +5,13 @@ from django.http import HttpResponseNotAllowed , Http404
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import Podcast_infoSerializer 
+from .serializers import podcast_serializer 
 from .models import *
 
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
-        'List_podcast_info':'/podcast-list/',               
+        'List_podcast':'/podcast-list/',               
         'Podcast_Detailview':'/podcast-view/<str:pk>',
         'Create_podcast':'/create-podcast/',
         'Update-podcast': '/podcast-update/<str:pk>/',
@@ -22,28 +22,28 @@ def apiOverview(request):
 
 @api_view(['GET'])
 def podcast_List(request):
-    podcasts = Podcast_info.objects.all()
-    serializer = Podcast_infoSerializer(podcasts , many=True)
+    podcasts = podcast.objects.all()
+    serializer = podcast_serializer(podcasts , many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def Podcast_detail(request , pk):
-#    if Podcast_info.is_podcast_blocked:
+#    if podcast.is_podcast_blocked:
  #       return HttpResponseForbidden
 #    else:
-        podcast = Podcast_info.objects.get(pk=pk)
+        podcast = podcast.objects.get(pk=pk)
         if podcast.is_podcast_blocked:
             return HttpResponseNotAllowed            
         else:
-            serializer = Podcast_infoSerializer(podcast , many=False)
+            serializer = podcast_Serializer(podcast , many=False)
 
             return Response(serializer.data)
 
 
 @api_view(['POST'])
 def podcast_create(request):
-    serializer = Podcast_infoSerializer(data=request.data)
+    serializer = podcast_Serializer(data=request.data)
 
     if serializer.is_valid():
         serializer.save()
@@ -53,8 +53,8 @@ def podcast_create(request):
 
 @api_view(['POST'])
 def podcast_update(request , pk):
-    podcast = Podcast_info.objects.get(pk=pk)
-    serializer = Podcast_infoSerializer( instance=podcast, data=request.data)
+    podcast = podcast.objects.get(pk=pk)
+    serializer = Podcast_Serializer( instance=podcast, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
@@ -63,7 +63,7 @@ def podcast_update(request , pk):
 
 @api_view(['DELETE'])
 def delete_podcast(request, pk):
-    podcast = Podcast_info.objects.get(pk=pk)
+    podcast = podcast.objects.get(pk=pk)
     podcast.delete()
 
     return Response(status=status.HTTP_204_NO_CONTENT)
@@ -74,21 +74,21 @@ def delete_podcast(request, pk):
 @api_view(['GET'])
 def comments_List(request):
     _comments = comment.objects.all()
-    serializer = commentSerializer(_comments , many=True)
+    serializer = comment_serializer(_comments , many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def comment_detail(request , pk):
     _comment = comment.objects.get(pk=pk)
-    serializer = commentSerializer(_comment , many=False)
+    serializer = comment_serializer(_comment , many=False)
 
     return Response(serializer.data)
 
 
 @api_view(['POST'])
 def comment_create(request):
-    serializer = commentSerializer(data=request.data)
+    serializer = comment_serializer(data=request.data)
 
     if serializer.is_valid():
         serializer.save()
@@ -99,7 +99,7 @@ def comment_create(request):
 @api_view(['POST'])
 def comment_update(request , pk):
     _comment = comment.objects.get(pk=pk)
-    serializer =commentSerializer( instance=_comment, data=request.data)
+    serializer =comment_serializer( instance=_comment, data=request.data)
 
     if serializer.is_valid():
         serializer.save()
