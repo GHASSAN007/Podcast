@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'stores',
     'Channels',
     'Front_end',
+    'Comments',
 
 
     #django libraries 
