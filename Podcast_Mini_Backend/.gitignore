@@ -1,5 +1,6 @@
-db.sqlite3
 media
+Test
+Front_end/node_modules
 .env
 .vscode
-Front_end/node_modules
+.pyc
