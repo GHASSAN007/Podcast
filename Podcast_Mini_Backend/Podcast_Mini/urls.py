@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('podcast_api/' , include('Podcast.urls')),
     path('stories_api/' , include('stores.urls')),
+    path('location/', include('Geo_Location.urls')),
     path('', include('Front_end.urls'))
 
 ]

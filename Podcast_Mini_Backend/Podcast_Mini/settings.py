@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY ='efbe6b7ebebebevdf68swfwebfvefefefefefrv8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -33,11 +33,12 @@ INSTALLED_APPS = [
     'Channels',
     'Front_end',
     'Comments',
-
+    'Geo_Location',
 
     #django libraries 
     'rest_framework',
     'corsheaders',
+    'ipware',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ALLOWED_HOSTS = [IP_ADDRESS]
+IPWARE_META_PRECEDENCE = True
