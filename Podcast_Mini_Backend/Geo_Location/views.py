@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from yaml import serialize
 from .serializers import location_serializer
 
 from .models import location
@@ -14,7 +15,8 @@ from .models import location
 def apiOverview(request):
     api_urls={
         'List_locations' : '/location-list/',
-        'Add_location': '/location-add',
+        'Add_location': '/location-add/',
+        'delete':'/delete/',
     }
 
     return Response(api_urls)
@@ -33,8 +35,14 @@ def get_ip(request):
     response = request.get(f'http://api.ipstack.com/{ip}?access_key=da61af9bc4bf29d265473db7385716dd')
     location_data = response.json()
     serializer = location_serializer(data=request.location_data)
-    print(location_data)
     if serializer.is_valid():
         serializer.save()
 
     return Response(serializer.data)
+
+@api_view(['POST'])
+def delete(request):
+    
+    serialize = location_serializer(data=request.data)
+
+    return Response(serialize.data)
