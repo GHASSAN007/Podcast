@@ -12,7 +12,7 @@ class podcast(models.Model):
     id = models.AutoField(primary_key=True)
     Title = models.CharField(max_length=200, unique=True)
     Description = models.TextField()
-    podcast = models.FileField(upload_to='podcasts/',  validators=[validate_podcast_extension])
+    podcast = models.FileField(upload_to='podcasts/',  validators=[validate_podcast_extension]) 
     Thumbnail = models.ImageField( upload_to='Thumbnail/', validators=[validate_thumbnail_extension])
     posting_date = models.DateTimeField(auto_now=True)
     podcasted_by = models.ForeignKey('auth.User', on_delete=models.CASCADE)
