@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns=[
-    path('location-list/', views.location_List, name="LocationList" ),
-    path('location-add/', views.get_ip , name="LocationAdd"),
-    path('delete/', views.delete , name="test")
+    path('', views.api_over_view.as_view(), name="api over view"),
+    path('location-list/', views.location_list.as_view(), name="listting locations" ),
+    path('location-add/', views.user_location.as_view() , name="location of the user"),
 ]
