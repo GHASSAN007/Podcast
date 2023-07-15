@@ -3,4 +3,5 @@ Test
 Front_end/node_modules
 .env
 .vscode
-.pyc
+.cpython-310.pyc
+cd 

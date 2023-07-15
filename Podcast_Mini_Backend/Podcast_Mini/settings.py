@@ -33,8 +33,6 @@ INSTALLED_APPS = [
     'Channels',
     'Front_end',
     'Comments',
-
-
     #django libraries 
     'rest_framework',
     'corsheaders',
