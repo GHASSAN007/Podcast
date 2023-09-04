@@ -1,7 +1,12 @@
 media
 Test
-Front_end/node_modules
+frontend/node_modules
 .env
 .vscode
-.cpython-310.pyc
-cd 
+*.pyc
+*.py[cod] 
+*$py.class 
+*.log
+*.pot
+__pycache__
+db.sqlite3 
